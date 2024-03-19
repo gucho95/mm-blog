@@ -1,0 +1,11 @@
+.inputContainer {
+  @apply relative bg-black/10 rounded-lg transition-all;
+}
+
+.searchIcon {
+  @apply w-6 h-6 ml-2 absolute left-0 bottom-[50%] translate-y-[50%] z-0 text-black/90 outline-none;
+}
+
+.input {
+  @apply w-full h-full bg-transparent cursor-auto outline-none relative z-10 text-black/80 pl-10;
+}
