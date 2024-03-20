@@ -1,6 +1,6 @@
 /* variants */
 .button {
-  @apply flex-shrink-0 active:opacity-75 active:scale-[0.98] hover:opacity-90 rounded-lg text-sm transition-all disabled:opacity-30;
+  @apply flex-shrink-0 active:opacity-75 active:scale-[0.98] hover:opacity-90 rounded-lg text-xs transition-all disabled:opacity-30;
 }
 
 .primaryButton {
