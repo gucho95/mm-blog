@@ -11,7 +11,7 @@ const Menu = () => {
   }
 
   return user ? (
-    <AuthedMenu onSignOut={signOut} />
+    <AuthedMenu onSignOut={signOut} user={user} />
   ) : (
     <PublicMenu onSignIn={googleSignIn} />
   );

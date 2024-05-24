@@ -1,25 +1,29 @@
+import { Box, Flex, Slot, Text, TextField } from "@radix-ui/themes";
+import Container from "../container";
 import Image from "../image";
-import SearchInput from "../input/searchInput";
 import Link from "../link";
 import classes from "./header.module.css";
 import Menu from "./menu";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 const Header = () => {
   return (
     <header className={classes.header}>
-      <div className="flex">
-        <Link href="/">
-          <Image
-            src="./logo.svg"
-            width={150}
-            height={34}
-            alt="brand logo"
-            priority
-          />
-        </Link>
-        <SearchInput containerClassName="ml-10" placeholder="Search..." />
-      </div>
-      <Menu />
+      <Container className={classes.headerContainer}>
+        <Flex align="center">
+          <Link href="/">
+            <Text weight="bold" color="violet">
+              Logo
+            </Text>
+          </Link>
+          <TextField.Root placeholder="Search..." ml="8">
+            <TextField.Slot side="right">
+              <MagnifyingGlassIcon />
+            </TextField.Slot>
+          </TextField.Root>
+        </Flex>
+        <Menu />
+      </Container>
     </header>
   );
 };

@@ -1,5 +1,9 @@
 .header {
-  @apply flex justify-between py-2 px-6 sticky top-0 bg-white z-50 border-b border-gray-50;
+  @apply shadow-sm sticky top-0 bg-white bg-opacity-45;
+}
+
+.headerContainer {
+  @apply flex justify-between py-2 sticky top-0 z-50;
 }
 
 .logo {

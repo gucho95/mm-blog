@@ -1,0 +1,11 @@
+.articleCard {
+  @apply hover:shadow-xl transition-all hover:bg-white max-w-full !m-0;
+}
+
+.coverContainer {
+  @apply w-full h-40 relative overflow-hidden rounded-md;
+}
+
+.articleDetails {
+  @apply h-20  overflow-hidden;
+}

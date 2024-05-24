@@ -1,7 +1,0 @@
-.iconButton {
-  @apply flex items-center;
-}
-
-.iconWrapper {
-  @apply border-r border-white/10 flex items-center mr-1 pr-1;
-}

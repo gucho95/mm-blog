@@ -6,6 +6,7 @@ import {
   User,
 } from "firebase/auth";
 import { useCallback, useEffect, useState } from "react";
+import useAuthors from "./useAuthors";
 
 type AuthActionProps = {
   onSuccess?: (response?: unknown) => void | undefined;
@@ -15,13 +16,18 @@ type AuthActionProps = {
 export type AuthAction = (props: AuthActionProps) => Promise<void>;
 
 function useAuth() {
+  const { setAuthor } = useAuthors();
   const [user, setUser] = useState<User | null>(null);
   const [authStateReady, setAuthStateReady] = useState(false);
 
   const googleSignIn: AuthAction = useCallback(
     async ({ onSuccess, onFailure }) => {
       try {
+        // authenticate user
         const response = await signInWithPopup(auth, authProvider);
+        // create/update user data in authors collection
+        setAuthor(response.user);
+
         onSuccess?.(response);
         console.log("SUCCESS: Sign in success ", response);
       } catch (error) {
@@ -29,7 +35,7 @@ function useAuth() {
         console.error(["Error on sign-in ", error]);
       }
     },
-    []
+    [setAuthor]
   );
 
   const signOut: AuthAction = useCallback(

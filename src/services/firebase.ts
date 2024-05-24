@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -12,12 +13,13 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_MEASURMENT_ID,
 };
 
-export const initFirebase = () => {
+const initFirebase = () => {
   console.log("INIT FIREBASE");
   const firebaseApp = initializeApp(firebaseConfig);
   const authProvider = new GoogleAuthProvider();
   const auth = getAuth(firebaseApp);
-  return { auth, firebaseApp, authProvider };
+  const firestoreDb = getFirestore(firebaseApp);
+  return { auth, firestoreDb, firebaseApp, authProvider };
 };
 
-export const { auth, firebaseApp, authProvider } = initFirebase();
+export const { auth, firestoreDb, firebaseApp, authProvider } = initFirebase();
