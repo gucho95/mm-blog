@@ -1,7 +1,7 @@
 "use client";
 import ArticleCard from "@/components/articleCard";
 import useArticles from "@/hooks/useArticles";
-import { Article } from "@/types/article";
+import { IArticle } from "@/types/article";
 import { Grid, Skeleton } from "@radix-ui/themes";
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
@@ -12,7 +12,7 @@ const SkeletonCard = () => (
 
 const Index = () => {
   const { getArticles } = useArticles();
-  const [articles, setArticles] = useState<Article[]>();
+  const [articles, setArticles] = useState<IArticle[]>();
 
   console.log("articles", articles);
 

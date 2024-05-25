@@ -3,10 +3,9 @@ import Image from "next/image";
 import classes from "./articleCard.module.css";
 import clsx from "clsx";
 import Link from "next/link";
-import { auth } from "@/services/firebase";
-import { Article } from "@/types/article";
+import { IArticle } from "@/types/article";
 
-type ArticleCardProps = Article;
+type ArticleCardProps = IArticle;
 
 const ArticleCard = (props: ArticleCardProps) => {
   const {
