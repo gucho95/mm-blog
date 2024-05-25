@@ -1,7 +1,8 @@
 "use client";
+import Avatar from "@/components/avatar";
 import useAuthors from "@/hooks/useAuthors";
 import { IAuthor } from "@/types/author";
-import { Avatar, Card, Flex, Heading, Text } from "@radix-ui/themes";
+import { Card, Flex, Heading, Text } from "@radix-ui/themes";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -24,8 +25,6 @@ const Author = () => {
     <Card>
       <Flex align="center" gapX="4">
         <Avatar
-          variant="soft"
-          radius="full"
           size="4"
           src={author?.photoURL || ""}
           fallback={author?.displayName?.charAt(0) || ""}

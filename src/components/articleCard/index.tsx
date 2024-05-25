@@ -1,9 +1,10 @@
-import { Avatar, Badge, Box, Card, Flex, Grid, Text } from "@radix-ui/themes";
+import { Badge, Box, Card, Flex, Grid, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import classes from "./articleCard.module.css";
 import clsx from "clsx";
 import Link from "next/link";
 import { IArticle } from "@/types/article";
+import Avatar from "../avatar";
 
 type ArticleCardProps = IArticle;
 
@@ -55,8 +56,6 @@ const ArticleCard = (props: ArticleCardProps) => {
         <Flex justify="between">
           <Flex gapX="2" align="center">
             <Avatar
-              variant="soft"
-              radius="full"
               size="1"
               src={author?.photoURL || ""}
               fallback={author?.displayName?.charAt(0) || ""}

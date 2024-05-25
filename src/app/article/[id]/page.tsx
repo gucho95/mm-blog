@@ -1,10 +1,10 @@
 "use client";
+import Avatar from "@/components/avatar";
 import ArticleContainer from "@/components/container/ArticleContainer";
 import useArticles from "@/hooks/useArticles";
 import { IArticle } from "@/types/article";
 
 import {
-  Avatar,
   Badge,
   Box,
   Flex,
@@ -76,8 +76,6 @@ const Article = () => {
       <Flex gapX="2" align="center">
         <Skeleton loading={loading}>
           <Avatar
-            variant="soft"
-            radius="full"
             size="2"
             src={article?.author?.photoURL || ""}
             fallback={article?.author?.displayName?.charAt(0) || ""}

@@ -25,7 +25,7 @@ function useAuth() {
       try {
         // authenticate user
         const response = await signInWithPopup(auth, authProvider);
-        // create/update user data in authors collection
+        // create/update author data in authors collection
         setAuthor(response.user);
 
         onSuccess?.(response);

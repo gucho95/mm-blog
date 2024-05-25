@@ -1,13 +1,8 @@
+import Avatar from "@/components/avatar";
 import Link from "@/components/link";
 import { AuthAction } from "@/hooks/useAuth";
 import { Pencil2Icon } from "@radix-ui/react-icons";
-import {
-  Button,
-  DropdownMenu,
-  IconButton,
-  Text,
-  Avatar,
-} from "@radix-ui/themes";
+import { Button, DropdownMenu, Text } from "@radix-ui/themes";
 import { User } from "firebase/auth";
 import { FC } from "react";
 
@@ -34,8 +29,6 @@ const AuthedMenu: FC<AuthedMenuProps> = ({ onSignOut, user }) => {
           <DropdownMenu.Trigger>
             <Text>
               <Avatar
-                variant="soft"
-                radius="full"
                 size="2"
                 src={user.photoURL || ""}
                 fallback={user.displayName?.charAt(0) || ""}
