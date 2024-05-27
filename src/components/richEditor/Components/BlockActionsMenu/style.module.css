@@ -1,0 +1,11 @@
+.menuTrigger {
+  @apply w-8 h-8 -mt-1.5 mr-2 bg-black/70 text-white/80 fill-current block rounded-full transition-all hover:text-black/50 duration-75 hover:text-white;
+}
+
+.menuWrapper {
+  @apply -mt-3.5 -ml-2.5;
+}
+
+.menuTransition {
+  @apply bg-black/70 shadow-xl transition-all rounded-lg shadow-purple-200/50 p-2;
+}

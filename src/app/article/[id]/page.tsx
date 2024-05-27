@@ -1,4 +1,10 @@
 "use client";
+import ArticleAuthor from "@/components/article/Author";
+import ArticleContent from "@/components/article/Content";
+import ArticleCover from "@/components/article/Cover";
+import ArticleTitle from "@/components/article/Title";
+import ArticleTopics from "@/components/article/Topics";
+import ArticleLayout from "@/components/articleLayout";
 import Avatar from "@/components/avatar";
 import ArticleContainer from "@/components/container/ArticleContainer";
 import useArticles from "@/hooks/useArticles";
@@ -37,71 +43,20 @@ const Article = () => {
 
   const loading = !article;
 
+  if (!article) {
+    return;
+  }
+
   return (
-    <ArticleContainer className="grid gap-y-6">
-      <Skeleton loading={loading}>
-        <div className="relative h-[60vh]">
-          {article?.cover ? (
-            <Image
-              src={article?.cover}
-              fill={true}
-              objectFit="cover"
-              alt=""
-              className="rounded-xl"
-            />
-          ) : null}
-        </div>
-      </Skeleton>
-
-      <Grid gapY="1">
-        <Skeleton loading={loading}>
-          <Heading size={"8"} className="text-4xl font-medium" as="h1">
-            {article?.title}
-          </Heading>
-        </Skeleton>
-
-        <Skeleton loading={loading}>
-          <Flex gap="2" wrap="wrap">
-            {article?.topics?.map((topic) => (
-              <Link key={topic} href={"/"}>
-                <Badge variant="soft" className="hover:bg-opacity-25">
-                  #{topic.toUpperCase()}
-                </Badge>
-              </Link>
-            ))}
-          </Flex>
-        </Skeleton>
-      </Grid>
-
-      <Flex gapX="2" align="center">
-        <Skeleton loading={loading}>
-          <Avatar
-            size="2"
-            src={article?.author?.photoURL || ""}
-            fallback={article?.author?.displayName?.charAt(0) || ""}
-          />
-        </Skeleton>
-
-        <Flex direction="column" gapY="1">
-          <Skeleton loading={loading}>
-            <Link
-              href={`/author/${article?.author?.uid}`}
-              className="hover:underline"
-            >
-              <Text>{article?.author?.displayName}</Text>
-            </Link>
-          </Skeleton>
-
-          <Skeleton loading={loading}>
-            <Text size="1" color="gray">
-              {createdAt}
-            </Text>
-          </Skeleton>
-        </Flex>
-      </Flex>
-
-      <div dangerouslySetInnerHTML={{ __html: article?.content || "" }}></div>
-    </ArticleContainer>
+    <ArticleLayout
+      components={{
+        Cover: <ArticleCover coverSrc={article.cover} />,
+        Title: <ArticleTitle>{article.title}</ArticleTitle>,
+        Topics: <ArticleTopics topics={article.topics} />,
+        Author: <ArticleAuthor author={article.author} createdAt={createdAt} />,
+        Content: <ArticleContent content={article.content} />,
+      }}
+    />
   );
 };
 

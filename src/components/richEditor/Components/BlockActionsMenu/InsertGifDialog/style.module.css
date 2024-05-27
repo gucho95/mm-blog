@@ -1,0 +1,11 @@
+.insertGifDialog {
+  @apply w-[90vw] h-[90vh] flex flex-col;
+}
+
+.searchInput {
+  @apply mb-2 ring-0 border-b-purple-200 border-b-[1px] rounded-none;
+}
+
+.gridContainer {
+  @apply w-full h-full overflow-y-auto overflow-x-hidden;
+}

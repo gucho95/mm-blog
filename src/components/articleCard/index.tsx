@@ -16,6 +16,7 @@ const ArticleCard = (props: ArticleCardProps) => {
     topics = ["sport", "it"],
     createdAt = "20/02/2024",
     author,
+    content,
   } = props;
 
   const createdAtDate = new Date(createdAt).toDateString();
@@ -47,9 +48,11 @@ const ArticleCard = (props: ArticleCardProps) => {
               {title}
             </Text>
 
-            <Text size="2" className="line-clamp-2">
-              {shortDescription}
-            </Text>
+            <Text
+              size="2"
+              className="line-clamp-2"
+              dangerouslySetInnerHTML={{ __html: content }}
+            ></Text>
           </Flex>
         </Box>
 

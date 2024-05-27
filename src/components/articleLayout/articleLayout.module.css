@@ -1,0 +1,22 @@
+.container {
+  @apply grid gap-y-4;
+}
+
+.coverContainer {
+  @apply relative h-[300px];
+}
+
+.titleContainer {
+  @apply min-h-11;
+}
+
+.topicsContainer {
+  @apply min-h-7;
+}
+
+.authorContainer {
+  @apply min-h-11;
+}
+
+.contentContainer {
+}

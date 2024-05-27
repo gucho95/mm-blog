@@ -1,0 +1,27 @@
+.insertImageDialog {
+  @apply w-[90vw] h-[90vh] flex flex-col;
+}
+
+.searchInput {
+  @apply mb-2 ring-0 border-b-purple-200 border-b-[1px] rounded-none;
+}
+
+.gridContainer {
+  @apply w-full grid grid-cols-6 gap-2 overflow-y-auto;
+}
+
+.gridItem {
+  @apply w-full h-60 rounded-xl relative;
+}
+
+.gridItemOverlay {
+  @apply absolute bg-black/50 inset-0 opacity-0 z-10 flex justify-center items-center;
+}
+
+.gridItemImg {
+  @apply object-cover object-center h-full w-full;
+}
+
+.skeletonItem {
+  @apply w-full h-60 bg-gray-300 rounded-xl;
+}

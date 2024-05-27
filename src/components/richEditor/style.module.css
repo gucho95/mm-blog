@@ -1,0 +1,42 @@
+.editor {
+  @apply focus:outline-none leading-10 rounded-md overflow-y-auto text-xl;
+}
+
+.editor:focus .placeholder::before {
+  @apply text-gray-400;
+}
+
+.placeholder::before {
+  @apply content-[attr(data-placeholder)] float-left h-0 pointer-events-none text-gray-200 text-xl leading-10 font-medium transition-all;
+}
+
+.editor h1 {
+  @apply text-3xl font-medium;
+}
+
+.editor h2 {
+  @apply text-2xl font-medium;
+}
+
+.editor h3 {
+  @apply text-xl font-medium;
+}
+
+.editor h4 {
+  @apply text-lg font-medium;
+}
+
+.editor ul {
+  @apply block list-disc ml-0 mr-0 mb-1 mt-1 pl-4;
+}
+
+.editor ol {
+  @apply block list-decimal ml-0 mr-0 mb-1 mt-1 pl-4;
+}
+
+.editor li {
+  @apply list-item;
+}
+.editor a {
+  @apply underline;
+}

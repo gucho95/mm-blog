@@ -24,11 +24,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={clsx(inter.className)}>
         <Theme {...THEME}>
-          <Flex direction="column" className="h-screen">
-            <Header />
-            <main className="flex-1 overflow-hidden bg-white">
-              <ScrollArea className="py-4">
-                <Container>{children}</Container>
+          <Flex direction="column" className="h-screen brd">
+            <div className="brd">
+              <Header />
+            </div>
+            <main className="flex-1 bg-white/85 overflow-hidden">
+              <ScrollArea scrollbars="vertical">
+                <Container className="h-full py-8">{children}</Container>
               </ScrollArea>
             </main>
           </Flex>

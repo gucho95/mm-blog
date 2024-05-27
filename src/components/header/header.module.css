@@ -1,5 +1,5 @@
 .header {
-  @apply shadow-sm sticky top-0 bg-white bg-opacity-45;
+  @apply sticky top-0 bg-white border-b border-gray-100;
 }
 
 .headerContainer {

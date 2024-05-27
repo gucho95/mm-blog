@@ -1,0 +1,19 @@
+.menu {
+  @apply flex gap-2;
+}
+
+.menuButton {
+  @apply p-1 rounded-lg hover:bg-white/20 text-white/90 fill-current;
+}
+
+.menuButtonSelected {
+  @apply bg-white/20;
+}
+
+.menuButtonIcon {
+  @apply w-6 h-6 block;
+}
+
+.verticalDivider {
+  @apply border-[0.25px] border-black/5 rounded-full;
+}

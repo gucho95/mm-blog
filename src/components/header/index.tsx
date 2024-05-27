@@ -16,7 +16,7 @@ const Header = () => {
               Logo
             </Text>
           </Link>
-          <TextField.Root placeholder="Search..." ml="8">
+          <TextField.Root variant="soft" placeholder="Search..." ml="8">
             <TextField.Slot side="right">
               <MagnifyingGlassIcon />
             </TextField.Slot>

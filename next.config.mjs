@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    remotePatterns: [{ hostname: "stablo.web3templates.com" }],
+    remotePatterns: [{ hostname: "firebasestorage.googleapis.com" }],
   },
 };
 

@@ -4,6 +4,7 @@ import { AuthAction } from "@/hooks/useAuth";
 import { Pencil2Icon } from "@radix-ui/react-icons";
 import { Button, DropdownMenu, Text } from "@radix-ui/themes";
 import { User } from "firebase/auth";
+import { usePathname } from "next/navigation";
 import { FC } from "react";
 
 type AuthedMenuProps = {
@@ -12,18 +13,22 @@ type AuthedMenuProps = {
 };
 
 const AuthedMenu: FC<AuthedMenuProps> = ({ onSignOut, user }) => {
-  console.log("user", user);
-  console.log("user.photoURL", user.photoURL);
+  const pathname = usePathname();
+  const showWriteButton = pathname !== "/write";
+
   return (
     <ul className="flex space-x-4 m-0 p-0">
-      <li className="flex items-center">
-        <Link href={"/write"}>
-          <Button>
-            <Pencil2Icon />
-            <Text weight="light">Write</Text>
-          </Button>
-        </Link>
-      </li>
+      {showWriteButton && (
+        <li className="flex items-center">
+          <Link href={"/write"}>
+            <Button>
+              <Pencil2Icon />
+              <Text weight="light">Write</Text>
+            </Button>
+          </Link>
+        </li>
+      )}
+
       <li className="flex items-center">
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>

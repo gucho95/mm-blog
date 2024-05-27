@@ -1,0 +1,11 @@
+.title {
+  @apply outline-none overflow-hidden cursor-text;
+}
+
+.title::before {
+  @apply text-gray-200 content-[attr(data-placeholder)] transition-all;
+}
+
+.title[data-focused="true"] {
+  @apply before:text-gray-400;
+}
