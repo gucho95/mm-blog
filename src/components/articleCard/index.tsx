@@ -6,7 +6,7 @@ import Link from "next/link";
 import { IArticle } from "@/types/article";
 import Avatar from "../avatar";
 
-type ArticleCardProps = IArticle;
+type ArticleCardProps = IArticle & { showPublishedState: boolean };
 
 const ArticleCard = (props: ArticleCardProps) => {
   const {
@@ -17,6 +17,8 @@ const ArticleCard = (props: ArticleCardProps) => {
     createdAt = "20/02/2024",
     author,
     content,
+    published,
+    showPublishedState,
   } = props;
 
   const createdAtDate = new Date(createdAt).toDateString();
@@ -44,9 +46,19 @@ const ArticleCard = (props: ArticleCardProps) => {
 
         <Box className={classes.articleDetails}>
           <Flex direction="column" gap="0">
-            <Text size="5" weight="medium" truncate>
-              {title}
-            </Text>
+            <Flex align="center" justify="between" gap="2">
+              <Text size="5" weight="medium" truncate>
+                {title}
+              </Text>
+
+              {showPublishedState ? (
+                published ? (
+                  <Badge color="green">Published</Badge>
+                ) : (
+                  <Badge color="gray">Draft</Badge>
+                )
+              ) : null}
+            </Flex>
 
             <Text
               size="2"
@@ -63,7 +75,12 @@ const ArticleCard = (props: ArticleCardProps) => {
               src={author?.photoURL || ""}
               fallback={author?.displayName?.charAt(0) || ""}
             />
-            <Link href={`/author/${author?.uid}`} className="hover:underline">
+            <Link
+              prefetch={true}
+              legacyBehavior={true}
+              href={`/author/${author?.uid}`}
+              className="hover:underline"
+            >
               <Text size="2" className="line-clamp-2">
                 Mkrtich Matevosyan
               </Text>

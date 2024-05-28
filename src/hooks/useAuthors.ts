@@ -17,6 +17,7 @@ function useAuthors() {
         photoURL: user.photoURL,
         uid: user.uid,
       };
+
       setDocument(COLLECTION, uid, payload);
     },
     [setDocument]

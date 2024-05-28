@@ -7,7 +7,17 @@ import {
   getDoc,
   getDocs,
   addDoc,
+  where,
+  query,
+  FieldPath,
+  WhereFilterOp,
 } from "firebase/firestore";
+
+interface GetDocumentsParams {
+  fieldName: string | FieldPath;
+  filter: WhereFilterOp;
+  fieldValue: unknown;
+}
 
 function useFireStore() {
   const addDocument = useCallback(
@@ -38,20 +48,34 @@ function useFireStore() {
     []
   );
 
-  const getDocuments = useCallback(async <T>(collectionName: string) => {
-    try {
-      const ref = collection(firestoreDb, collectionName);
-      const querySnapshot = await getDocs(ref);
-      const docs = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      })) as T;
-      console.log("docs", docs);
-      return docs;
-    } catch (e) {
-      console.error("Error fetchings collection documents: ", e);
-    }
-  }, []);
+  const getDocuments = useCallback(
+    async <T>(collectionName: string, params?: GetDocumentsParams[]) => {
+      try {
+        const documentsRef = collection(firestoreDb, collectionName);
+
+        const querySnapshot = params?.length
+          ? await getDocs(
+              query(
+                documentsRef,
+                ...params.map((param) =>
+                  where(param.fieldName, param.filter, param.fieldValue)
+                )
+              )
+            )
+          : await getDocs(documentsRef);
+
+        const docs = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        })) as T;
+        console.log("docs", docs);
+        return docs;
+      } catch (e) {
+        console.error("Error fetchings collection documents: ", e);
+      }
+    },
+    []
+  );
 
   const getDocument = useCallback(
     async <T>(collectionName: string, documentId: string) => {

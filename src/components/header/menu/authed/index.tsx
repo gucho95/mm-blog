@@ -1,9 +1,10 @@
 import Avatar from "@/components/avatar";
-import Link from "@/components/link";
+
 import { AuthAction } from "@/hooks/useAuth";
 import { Pencil2Icon } from "@radix-ui/react-icons";
 import { Button, DropdownMenu, Text } from "@radix-ui/themes";
 import { User } from "firebase/auth";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC } from "react";
 
@@ -20,7 +21,7 @@ const AuthedMenu: FC<AuthedMenuProps> = ({ onSignOut, user }) => {
     <ul className="flex space-x-4 m-0 p-0">
       {showWriteButton && (
         <li className="flex items-center">
-          <Link href={"/write"}>
+          <Link href="/write" prefetch={true}>
             <Button>
               <Pencil2Icon />
               <Text weight="light">Write</Text>
@@ -41,7 +42,12 @@ const AuthedMenu: FC<AuthedMenuProps> = ({ onSignOut, user }) => {
             </Text>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
-            <DropdownMenu.Item>My Articles</DropdownMenu.Item>
+            <DropdownMenu.Item className="brd" asChild>
+              <Link href="/my-articles" prefetch={true}>
+                My Articles
+              </Link>
+            </DropdownMenu.Item>
+
             <DropdownMenu.Item>Profile</DropdownMenu.Item>
             <DropdownMenu.Item>Settings</DropdownMenu.Item>
             <DropdownMenu.Separator />
