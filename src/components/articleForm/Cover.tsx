@@ -35,6 +35,7 @@ const ArticleFormCover = (props: ArticleFormCover) => {
           <Box className="absolute inset-0 bg-black/30">
             <Flex className=" absolute right-2 top-2 group-hover:visible invisible">
               <IconButton
+                type="button"
                 color="gray"
                 variant="surface"
                 radius="full"

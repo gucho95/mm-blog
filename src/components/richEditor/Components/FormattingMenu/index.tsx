@@ -5,8 +5,8 @@ import { EditorView } from "@tiptap/pm/view";
 import clsx from "clsx";
 import InsertLinkDialog from "./InserLinkDialog";
 import { getMenuActions } from "./Actions";
-import Menu from "../../../Menu";
 import classes from "./style.module.css";
+import Menu from "@/components/menu";
 
 const FormattingMenu = () => {
   const { editor } = useCurrentEditor();

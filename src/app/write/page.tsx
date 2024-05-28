@@ -1,44 +1,19 @@
 "use client";
+import { Fragment } from "react";
 import ArticleFormCover from "@/components/articleForm/Cover";
 import ArticleFormTitle from "@/components/articleForm/Title";
 import ArticleFormTopics from "@/components/articleForm/Topics";
 import ArticleLayout from "@/components/articleLayout";
-import ArticleContainer from "@/components/container/ArticleContainer";
 import RichEditor from "@/components/richEditor";
 import useArticles from "@/hooks/useArticles";
 import useAuth from "@/hooks/useAuth";
 import useFileManager from "@/hooks/useFileUpload";
-import { getAbsolutePath } from "@/utils/storage";
-import {
-  CheckIcon,
-  ClipboardIcon,
-  CodeSandboxLogoIcon,
-  Cross1Icon,
-  Cross2Icon,
-  Crosshair1Icon,
-  PaperPlaneIcon,
-  RocketIcon,
-  UploadIcon,
-} from "@radix-ui/react-icons";
+import { CheckIcon, ClipboardIcon, Cross2Icon } from "@radix-ui/react-icons";
 
-import {
-  Box,
-  Button,
-  Flex,
-  Grid,
-  Heading,
-  IconButton,
-  ScrollArea,
-  Select,
-  Spinner,
-  Text,
-  TextArea,
-  TextField,
-  Tooltip,
-} from "@radix-ui/themes";
+import { Flex, IconButton, Tooltip } from "@radix-ui/themes";
 import { StorageReference } from "firebase/storage";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, ChangeEventHandler, Fragment } from "react";
+
 import { useController, useForm } from "react-hook-form";
 
 type WriteArticleFormValues = {
@@ -50,6 +25,7 @@ type WriteArticleFormValues = {
     ref: StorageReference | undefined;
     url: string;
   };
+  published: boolean;
 };
 
 const Write = () => {
@@ -69,10 +45,7 @@ const Write = () => {
     control,
     name: "cover",
     defaultValue: { ref: undefined, url: "" },
-    rules: {
-      validate: (val) => !!val.url,
-      required: "Required",
-    },
+    rules: { validate: (val) => !!val.url, required: "Required" },
   });
 
   const { field: titleField } = useController({
@@ -96,6 +69,12 @@ const Write = () => {
     rules: { required: "Topics is required" },
   });
 
+  const { field: publishedField } = useController({
+    control,
+    name: "published",
+    defaultValue: true,
+  });
+
   const onFormSuccess = async (values: WriteArticleFormValues) => {
     if (!user) {
       return;
@@ -117,9 +96,10 @@ const Write = () => {
       cover: coverField.value.url,
     };
 
+    console.log("submit");
+
     await addArticle(payload);
-    console.log("values", payload);
-    navigate.push("/");
+    // navigate.push("/");
   };
 
   const onCoverUpload = async (file: File) => {
@@ -127,10 +107,7 @@ const Write = () => {
 
     if (snapshot) {
       const { downloadUrl, ref } = snapshot;
-      coverField.onChange({
-        url: downloadUrl,
-        ref,
-      });
+      coverField.onChange({ url: downloadUrl, ref });
     }
   };
 
@@ -140,20 +117,18 @@ const Write = () => {
     }
 
     await deleteFile(coverField.value.ref);
-
-    coverField.onChange({
-      ref: undefined,
-      url: "",
-    });
+    coverField.onChange({ ref: undefined, url: "" });
   };
 
-  console.log("titlefiel", titleField.value);
+  const onDraftSave = () => {
+    publishedField.onChange(false);
+    onSubmit();
+  };
+
+  const onSubmit = handleSubmit(onFormSuccess);
+
   return (
-    <form
-      noValidate
-      onSubmit={handleSubmit(onFormSuccess)}
-      className="h-full max-h-full"
-    >
+    <form noValidate onSubmit={onSubmit} className="h-full max-h-full">
       <ArticleLayout
         components={{
           Cover: (
@@ -202,7 +177,8 @@ const Write = () => {
             <Fragment>
               <Tooltip content="Save as draft">
                 <IconButton
-                  type="submit"
+                  type="button"
+                  onClick={onDraftSave}
                   variant="outline"
                   radius="full"
                   className="!p-3"
@@ -211,6 +187,7 @@ const Write = () => {
                   <ClipboardIcon width="100%" height="100%" />
                 </IconButton>
               </Tooltip>
+
               <Tooltip content="Publish">
                 <IconButton
                   type="submit"

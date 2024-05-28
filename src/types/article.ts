@@ -9,6 +9,7 @@ export interface IArticle {
   topics: string[];
   createdAt: string;
   author: IAuthor;
+  published: boolean;
 }
 
 export type CreateArticlePayload = Omit<IArticle, "id">;

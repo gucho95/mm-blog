@@ -73,7 +73,7 @@ const BlockActionsMenu = () => {
 
   return (
     <div>
-      <FloatingMenu tippyOptions={{ placement: "left-start" }}>
+      <FloatingMenu editor={editor} tippyOptions={{ placement: "left-start" }}>
         <MenuTrigger
           menuOpen={menuOpen}
           onMenuClose={onMenuClose}
@@ -83,6 +83,7 @@ const BlockActionsMenu = () => {
       </FloatingMenu>
 
       <FloatingMenu
+        editor={editor}
         tippyOptions={{ placement: "right-start" }}
         className={classes.menuWrapper}
       >

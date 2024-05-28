@@ -24,33 +24,33 @@ const InsertImageDialog: FC<InsertImageDialogProps> = ({
   const debouncedValue = useDebounce(value);
 
   // listen to keyword change with debounce and query
-  useEffect(() => {
-    if (!dialogProps.isOpen) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (!dialogProps.isOpen) {
+  //     return;
+  //   }
 
-    const search = async () => {
-      setLoading(true);
-      const data = await imageService.search.getPhotos({
-        query: debouncedValue || "random",
-        perPage: 20,
-      });
+  //   const search = async () => {
+  //     setLoading(true);
+  //     const data = await imageService.search.getPhotos({
+  //       query: debouncedValue || "random",
+  //       perPage: 20,
+  //     });
 
-      setImages(data.response?.results);
-      setLoading(false);
-    };
+  //     setImages(data.response?.results);
+  //     setLoading(false);
+  //   };
 
-    search();
-  }, [debouncedValue, dialogProps.isOpen]);
+  //   search();
+  // }, [debouncedValue, dialogProps.isOpen]);
 
   // reset state variables on unmount
-  useEffect(() => {
-    return () => {
-      setImages([]);
-      setValue("");
-      setLoading(true);
-    };
-  }, [dialogProps.isOpen]);
+  // useEffect(() => {
+  //   return () => {
+  //     setImages([]);
+  //     setValue("");
+  //     setLoading(true);
+  //   };
+  // }, [dialogProps.isOpen]);
 
   return (
     <Dialog.Root {...dialogProps}>

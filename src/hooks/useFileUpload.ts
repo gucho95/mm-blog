@@ -36,7 +36,6 @@ function useFileManager() {
     setDeleteLoading(true);
     try {
       await deleteObject(storageRef);
-      console.log("file successfully uploaded");
     } catch (err) {
       console.log("Error on file delete", err);
     } finally {

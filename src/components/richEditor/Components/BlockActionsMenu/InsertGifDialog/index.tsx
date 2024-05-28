@@ -22,14 +22,15 @@ const InsertGifDialog: FC<InsertGifDialogProps> = ({
   const fetchGifs = (offset: number) =>
     gifService.search(value || "random", { offset, limit: 10 });
 
-  useEffect(() => {
-    return () => {
-      setValue("");
-    };
-  }, [dialogProps.isOpen]);
+  // useEffect(() => {
+  //   return () => {
+  //     setValue("");
+  //   };
+  // }, [dialogProps.isOpen]);
 
   return (
-    <Dialog.Root {...dialogProps} className={classes.insertGifDialog}>
+    // className={classes.insertGifDialog}
+    <Dialog.Root {...dialogProps}>
       <Dialog.Content>
         <TextField.Root
           value={value}
